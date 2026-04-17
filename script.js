@@ -29,7 +29,7 @@ if(result.success){
 alert("✅ Submitted successfully!");
 document.getElementById("bioForm").reset();
 }else{
-alert("❌ Failed to submit");
+alert("❌ Submission failed");
 }
 
 } catch (err){
