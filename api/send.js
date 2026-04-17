@@ -29,7 +29,6 @@ const message = `
 `;
 
 try {
-
 await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
 method: "POST",
 headers: {
