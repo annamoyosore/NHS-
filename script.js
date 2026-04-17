@@ -26,13 +26,14 @@ body: JSON.stringify(data)
 const result = await res.json();
 
 if(result.success){
-alert("✅ Submitted successfully!");
 document.getElementById("bioForm").reset();
-}else{
+window.location.href = "success.html";
+} else {
 alert("❌ Submission failed");
 }
 
 } catch (err){
+console.log(err);
 alert("⚠️ Network error");
 }
 });
