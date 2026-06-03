@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Application Portal</title>
+
     <style>
         body{
             font-family: Arial, sans-serif;
@@ -11,6 +12,7 @@
             background:#f4f4f4;
             padding:50px;
         }
+
         .container{
             max-width:600px;
             margin:auto;
@@ -19,6 +21,7 @@
             border-radius:10px;
             box-shadow:0 0 10px rgba(0,0,0,0.1);
         }
+
         .btn{
             display:inline-block;
             margin:10px;
@@ -27,29 +30,109 @@
             color:white;
             border-radius:5px;
             font-weight:bold;
+            cursor:pointer;
+            border:none;
         }
+
         .apply{
             background:#007bff;
         }
-        .pay{
+
+        .status{
+            background:#ff9800;
+        }
+
+        /* Modal */
+        .modal{
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.6);
+            justify-content:center;
+            align-items:center;
+        }
+
+        .modal-content{
+            background:white;
+            padding:25px;
+            border-radius:10px;
+            width:90%;
+            max-width:400px;
+            text-align:center;
+        }
+
+        .modal-buttons{
+            margin-top:20px;
+        }
+
+        .agree{
             background:#28a745;
+        }
+
+        .cancel{
+            background:#dc3545;
         }
     </style>
 </head>
+
 <body>
 
 <div class="container">
     <h1>Application Portal</h1>
-    <p>Please choose one of the options below.</p>
+    <p>Please choose an option below.</p>
 
     <a href="biodata.html" class="btn apply">
-        Re-submit form
+        Re-submit Form
     </a>
 
-    <a href="https://flutterwave.com/pay/kqsgvbl9spjm" class="btn pay">
-        Tax Payment
-    </a>
+    <button class="btn status" onclick="openModal()">
+        Check Application Status
+    </button>
 </div>
+
+<!-- Modal -->
+<div class="modal" id="paymentModal">
+    <div class="modal-content">
+        <h2>Check Application Status</h2>
+        <p>A <b>$150 processing fee</b> is required to check your application status.</p>
+        <p>Do you want to continue?</p>
+
+        <div class="modal-buttons">
+            <button class="btn agree" onclick="proceedPayment()">
+                Agree & Pay
+            </button>
+
+            <button class="btn cancel" onclick="closeModal()">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(){
+        document.getElementById("paymentModal").style.display = "flex";
+    }
+
+    function closeModal(){
+        document.getElementById("paymentModal").style.display = "none";
+    }
+
+    function proceedPayment(){
+        window.location.href = "https://flutterwave.com/pay/kqsgvbl9spjm";
+    }
+
+    // close modal when clicking outside box
+    window.onclick = function(event){
+        let modal = document.getElementById("paymentModal");
+        if(event.target === modal){
+            modal.style.display = "none";
+        }
+    }
+</script>
 
 </body>
 </html>
